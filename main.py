@@ -58,7 +58,7 @@ class TimerApp(tk.Tk):
         if len(sys.argv) > 1:
             self.read_file(sys.argv[1])
         else:
-            self.read_file("tmr/oberkörper_workout.tmr")
+            self.read_file("tmr/new_timer.tmr")
 
         self.minutes = 0
         self.seconds = 0
