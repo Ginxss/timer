@@ -39,10 +39,11 @@ class NewTimerWindow(tk.Toplevel):
 
     def save(self):
         data = [("Timer files", "*.tmr")]
-        file = fd.asksaveasfile(mode='w', filetypes=data, defaultextension=data)
-        if file is None:
+        filename = fd.asksaveasfilename(filetype=data, defaultextension=data)
+        if filename == "":
             return
-
+        
+        file = open(filename, "w", encoding="utf-8")
         file.write(self.entry.get("1.0", tk.END))
         file.close()
         self.destroy()
