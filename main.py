@@ -1,9 +1,10 @@
-import tkinter as tk
-import tkinter.font as tk_font
-import tkinter.filedialog as fd
 import sys
 import time
 import threading
+import tkinter as tk
+import tkinter.ttk as ttk
+import tkinter.font as tk_font
+import tkinter.filedialog as fd
 from playsound import playsound
 
 
@@ -20,12 +21,19 @@ class NewTimerWindow(tk.Toplevel):
         button_frame.pack(fill=tk.X, side=tk.BOTTOM, padx=10, pady=10)
 
         # Entry
-        entry_info_label = tk.Label(entry_frame, text="Format: <Name>:<minutes>:<seconds>", anchor="w", justify=tk.LEFT)
+        entry_info_font = tk_font.Font(family="Arial", size=12)
+        entry_info_label = tk.Label(entry_frame, text="Format: <Name>:<minutes>:<seconds>", anchor="w", justify=tk.LEFT,
+                                    font=entry_info_font)
         entry_info_label.pack(fill=tk.X)
 
-        self.entry = tk.Text(entry_frame)
+        entry_font = tk_font.Font(family="Arial", size=11)
+        self.entry = tk.Text(entry_frame, font=entry_font)
         self.entry.insert(tk.END, "Name of Interval 1: 1:30\n\nName of Interval 2: 0:5")
         self.entry.pack(fill=tk.BOTH, expand=True, pady=10)
+
+        scrollbar = ttk.Scrollbar(self.entry, command=self.entry.yview)
+        self.entry.config(yscrollcommand=scrollbar.set)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
         # Buttons
         cancel_button = tk.Button(button_frame, text="Cancel", command=self.cancel)
