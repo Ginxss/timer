@@ -1,1 +1,2 @@
-tmr/
+tmr/*
+!tmr/timer.tmr
